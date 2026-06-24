@@ -1,6 +1,8 @@
 # RustDesk Updater for Debian (Downloads .deb from official Git Repo)
 
 This script will install/update **RustDesk Desktop** and **RustDesk Server** on Linux Debian systems.
+Server Version: https://github.com/rustdesk/rustdesk-server/releases
+Desktop Version: https://github.com/rustdesk/rustdesk/releases
 
 The updater downloads packages directly from the official GitHub releases:
 
