@@ -4,6 +4,15 @@ set -Eeuo pipefail
 export DEBIAN_FRONTEND=noninteractive
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+# Defaults:
+# UPDATE_DESKTOP=1 means update RustDesk Desktop
+# UPDATE_SERVER=1 means update RustDesk Server
+#
+# Examples:
+# sudo UPDATE_DESKTOP=1 UPDATE_SERVER=0 /usr/local/sbin/rustdesk-official-updater.sh
+# sudo UPDATE_DESKTOP=0 UPDATE_SERVER=1 /usr/local/sbin/rustdesk-official-updater.sh
+# sudo UPDATE_DESKTOP=1 UPDATE_SERVER=1 /usr/local/sbin/rustdesk-official-updater.sh
+
 UPDATE_DESKTOP="${UPDATE_DESKTOP:-1}"
 UPDATE_SERVER="${UPDATE_SERVER:-1}"
 
@@ -286,10 +295,14 @@ update_rustdesk_server() {
 
 if [[ "${UPDATE_DESKTOP}" == "1" ]]; then
     update_rustdesk_desktop
+else
+    log "Skipping RustDesk desktop update because UPDATE_DESKTOP=${UPDATE_DESKTOP}"
 fi
 
 if [[ "${UPDATE_SERVER}" == "1" ]]; then
     update_rustdesk_server
+else
+    log "Skipping RustDesk Server update because UPDATE_SERVER=${UPDATE_SERVER}"
 fi
 
 log "Done"
